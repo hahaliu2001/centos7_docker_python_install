@@ -38,5 +38,10 @@ RUN yum -y install epel-release \
     && rm -rf Python-3.11* \
     #set python3 alias to python3.11
     && echo "alias python3='/usr/local/bin/python3.11' " >> .bashrc \
+    #install git 2 version
+    && yum -y remove git \
+    && yum -y remove git-* \
+    && yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm \
+    && yum -y install git \
     && yum autoremove -y \
     && yum clean all -y \
