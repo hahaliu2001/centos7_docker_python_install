@@ -12,4 +12,4 @@ docker run -dit \
 
 #below pipework script can be used to assign IP to container
 # br1 is host network bridge
-#pipework br1 centos7_python 192.168.1.106/24@192.168.1.1
+pipework br1 centos7_python 192.168.1.106/24@192.168.1.1
