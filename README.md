@@ -38,3 +38,13 @@ python3 --version # return python3 version to be 3.11.2
 ```
 ./rm_docker.sh
 ```
+## how to add authorized user to .ssh
+// in my test, client is macOS and has generated ira key
+cat id_rsa.pub and copy the keys// run on client (macOS in my test)
+ssh to centos
+cd .ssh
+create authorized_keys and paste copied keys into this file
+// permissions on the ~/.ssh/authorized_keys should be 400 / 600 (permissions on the owner only).
+// set permission to 777 not work
+chmod 400 authorized_keys // 
+
