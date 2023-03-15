@@ -26,12 +26,14 @@ RUN yum -y install epel-release \
     && echo "export PATH=/usr/local/openssl/bin:\$PATH" > /etc/profile.d/openssl.sh \
     && echo "export LD_LIBRARY_PATH=/usr/local/openssl/lib:\$LD_LIBRARY_PATH" >> /etc/profile.d/openssl.sh \
     && source /etc/profile.d/openssl.sh \
+    # need sqlite3 to build python, solve sqlite3 not found isue
+    && yum -y install sqlite-devel \
     # download, build and install python
     && wget https://www.python.org/ftp/python/3.11.2/Python-3.11.2.tgz \
     && tar xvf Python-3.11.2.tgz \
     && rm Python-3.11.2.tgz \
     && cd Python-3.11*/ \
-    && LDFLAGS="${LDFLAGS} -Wl,-rpath=/usr/local/openssl/lib" ./configure --with-openssl=/usr/local/openssl \
+    && LDFLAGS="${LDFLAGS} -Wl,-rpath=/usr/local/openssl/lib" ./configure --with-openssl=/usr/local/openssl  --enable-loadable-sqlite-extensions \
     && make \
     && make altinstall \
     && cd .. \
